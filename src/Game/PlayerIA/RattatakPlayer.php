@@ -7,7 +7,7 @@ use Hackathon\Game\Result;
 /**
  * Class RattatakPlayers
  * @package Hackathon\PlayerIA
- * @author YOUR NAME HERE
+ * @author MALKI Ferial
  */
 class RattatakPlayer extends Player
 {
@@ -17,6 +17,17 @@ class RattatakPlayer extends Player
 
     public function getChoice()
     {
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
+            return parent::paperChoice();
+
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
+            return parent::rockChoice();
+
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
+            return parent::paperChoice();
+
+        $a = $this->result->getChoicesFor($this->opponentSide);
+
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
